@@ -40,7 +40,10 @@ const user = jwt.decode(token);  // no signature verification!
 6. Forward the modified request and observe the response.
 
 #### jwt_tool
-Removing the signature entirely: python3 jwt_tool.py <JWT_TOKEN> -X n
+Removing the signature entirely:
+```bash
+python3 jwt_tool.py <JWT_TOKEN> -X a
+```
 
 ---
 
