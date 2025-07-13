@@ -42,7 +42,7 @@ const user = jwt.decode(token);  // no signature verification!
 #### jwt_tool
 Removing the signature entirely:
 ```bash
-python3 jwt_tool.py <JWT_TOKEN> -X a
+python3 jwt_tool.py <JWT_TOKEN> -X n
 ```
 
 ---
