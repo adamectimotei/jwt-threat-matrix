@@ -12,7 +12,7 @@ The `jwk` header field lets the sender embed a public key that should be used to
 
 This vulnerability was publicly disclosed as [CVE-2018-0114](https://nvd.nist.gov/vuln/detail/CVE-2018-0114) and affected the PyJWT library.
 
-### JWT Header Example
+### JWK Header Example
 
 ```json
 {
