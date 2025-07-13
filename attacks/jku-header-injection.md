@@ -94,17 +94,17 @@ Some applications implement basic validation for the `jku` URL to restrict where
 - **File upload (domain-based allowlist):**  
   If the application only checks that the domain is trusted, you may upload a `jwks.json` file (e.g., via a user-upload feature) to that domain and point `jku` to it.
 
+- **Open redirect:** (domain-based allowlist)
+  If an open redirect exists on a trusted domain, set the `jku` to point through it:
+  ```json
+  https://trusted.com/redirect?url=https://attacker.com/jwks.json
+  ```
+
 - **Path traversal (path-based check):**  
   If the server validates the full path (e.g., expects `/.well-known/jwks.json`), you may bypass it using path traversal:
-http://target.com/.well-known/jwks.json/../../uploads/jwks.json
-
-arduino
-Zkopírovat
-Upravit
-
-- **Open redirect:**  
-If an open redirect exists on a trusted domain, set the `jku` to point through it:
-https://trusted.com/redirect?url=https://attacker.com/jwks.json
+  ```json
+  http://target.com/.well-known/jwks.json/../../uploads/jwks.json
+  ```
 
 ---
 
