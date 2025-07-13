@@ -35,8 +35,8 @@ const user = jwt.decode(token);  // no signature verification!
 1. Intercept a request containing a JWT token.
 2. Switch to the "JSON Web Token" tab.
 3. Modify the payload (e.g., change `"role": "user"` to `"role": "admin"`).
-4. First, try keeping the original signature (header.payload.signature)
-5. If that fails, try removing the signature entirely (header.payload.)
+4. First, try keeping the original signature (`header.payload.signature`).
+5. If that fails, try removing the signature entirely (`header.payload.`).
 6. Forward the modified request and observe the response.
 
 #### jwt_tool
