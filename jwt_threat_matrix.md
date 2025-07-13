@@ -1,4 +1,4 @@
-# JWT Attack Matrix
+# JWT Threat Matrix
 
 This matrix summarizes which JWT attacks apply to symmetric (HS*) vs asymmetric (RS*) algorithms.
 
