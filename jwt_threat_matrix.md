@@ -2,7 +2,7 @@
 
 This matrix summarizes which JWT attacks apply to symmetric (HS*) vs asymmetric (RS*) algorithms.
 
-| Attack Name | [Sensitive Data Exposure](attacks/sensitive-data-exposure.md) | [Unverified Signature](attacks/unverified-signature.md) | [None Algorithm](attacks/none-algorithm.md) | [Secret Key Brute-force](attacks/secret-key-brute-force.md) | [Leaked Secret Key](attacks/leaked-secret-key.md) | [jwk Header Injection](attacks/jwk-header-injection.md) | [jku Header Injection](attacks/jku-header-injection.md) | [kid directory traversal / LFI](attacks/kid-directory-traversal---lfi.md) | [kid SQLi / Command Injection](attacks/kid-sqli---command-injection.md) | [Algorithm Confusion (RS ➝ HS)](attacks/algorithm-confusion-rs-to-hs.md) | [HS ➝ RS with jku](attacks/hs-to-rs-with-jku.md) | [JWT with weak key](attacks/jwt-with-weak-key.md) | [Token with no expiration](attacks/token-with-no-expiration.md) |
-|-------------|----|----|----|----|----|----|----|----|----|----|----|----|----|
-| Symmetric | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Asymmetric | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ | ✅ |
+| Attack Name | [Sensitive Data Exposure](attacks/sensitive-data-exposure.md) | [Unverified Signature](attacks/unverified-signature.md) | [None Algorithm](attacks/none-algorithm.md) | [Secret Key Brute-force](attacks/secret-key-brute-force.md) | [Leaked Secret Key](attacks/leaked-secret-key.md) | [JWK Header Injection](attacks/jwk-header-injection.md) | [JKU Header Injection](attacks/jku-header-injection.md) | [KID directory traversal / LFI](attacks/kid-directory-traversal---lfi.md) | [kid SQLi / Command Injection](attacks/kid-sqli---command-injection.md) | [Algorithm Confusion (RS ➝ HS)](attacks/algorithm-confusion-rs-to-hs.md) | [HS ➝ RS with jku](attacks/hs-to-rs-with-jku.md) | [Token with no expiration](attacks/token-with-no-expiration.md) |
+|-------------|----|----|----|----|----|----|----|----|----|----|----|----|
+| Symmetric | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Asymmetric | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ |
