@@ -15,7 +15,7 @@ Although signed, the JWT payload is not encrypted. If it contains sensitive or s
   "sub": "1234567890",
   "name": "John Doe",
   "email": "john.doe@example.com",
-  "accessToken": "eyJhbGciOi..."
+  "phone": "123456789"
 }
 ```
 
@@ -50,7 +50,7 @@ python3 jwt_tool.py <JWT_TOKEN> -d
 
 ## Impact
 
-- Information disclosure (e.g., email, session data)
+- Information disclosure (e.g., PII, session data)
 - Unauthorized data access
 
 ---
