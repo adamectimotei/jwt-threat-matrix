@@ -22,7 +22,7 @@ const user = jwt.decode(token);  // no signature verification!
 
 ---
 
-## 🧪 Tools
+## Tools
 
 - Burp Suite (JWT Editor extension)
 - jwt_tool
@@ -31,7 +31,7 @@ const user = jwt.decode(token);  // no signature verification!
 
 ## Exploitation Steps
 
-### Burp Suite (JWT Editor extension)
+#### Burp Suite (JWT Editor extension)
 1. Intercept a request containing a JWT token.
 2. Switch to the "JSON Web Token" tab.
 3. Modify the payload (e.g., change `"role": "user"` to `"role": "admin"`).
@@ -39,7 +39,7 @@ const user = jwt.decode(token);  // no signature verification!
 5. If that fails, try removing the signature entirely (header.payload.)
 6. Forward the modified request and observe the response.
 
-### jwt_tool
+#### jwt_tool
 Removing the signature entirely: python3 jwt_tool.py <JWT_TOKEN> -X n
 
 ---
