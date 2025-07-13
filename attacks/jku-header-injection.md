@@ -10,7 +10,7 @@ According to the JWS specification, only the alg header parameter is mandatory. 
 
 The `jku` parameter allows a token to reference an external JWK Set (usually hosted at `/.well-known/jwks.json`). If the server accepts any arbitrary URL and doesn't validate its origin or content, it can be tricked into trusting a malicious key hosted by an attacker.
 
-### JKU Header Example
+### JWK Set Example
 
 ```json
 {
