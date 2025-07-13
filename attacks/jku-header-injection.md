@@ -107,13 +107,13 @@ Some applications implement basic validation for the `jku` URL to restrict where
 
 - **Open redirect:** (domain-based allowlist)
   If an open redirect exists on a trusted domain, set the `jku` to point through it:
-  ```json
+  ```text
   https://trusted.com/redirect?url=https://attacker.com/jwks.json
   ```
 
 - **Path traversal (path-based check):**  
   If the server validates the full path (e.g., expects `/.well-known/jwks.json`), you may bypass it using path traversal:
-  ```json
+  ```text
   http://target.com/.well-known/jwks.json/../../uploads/jwks.json
   ```
 
