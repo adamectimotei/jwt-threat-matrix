@@ -8,6 +8,17 @@ Some applications support the `jku` (JWK Set URL) JWT header parameter to dynami
 
 According to the JWS specification, only the alg header parameter is mandatory. In practice, however, JWT headers (also known as JOSE headers) often contain several other parameters, such as jku (JWK Set Url).
 
+### JKU Header Example
+
+```json
+{
+  "alg": "RS256",
+  "typ": "JWT",
+  "kid": "75d0ef47-af89-47a9-9061-7c02a610d5ab",
+  "jku": "https://target.com/.well-known/jwks.json"
+}
+```
+
 The `jku` parameter allows a token to reference an external JWK Set (usually hosted at `/.well-known/jwks.json`). If the server accepts any arbitrary URL and doesn't validate its origin or content, it can be tricked into trusting a malicious key hosted by an attacker.
 
 ### JWK Set Example
@@ -105,6 +116,14 @@ Some applications implement basic validation for the `jku` URL to restrict where
   ```json
   http://target.com/.well-known/jwks.json/../../uploads/jwks.json
   ```
+
+- **CRLF header injection (domain-based check):**  
+  In some cases, it's possible to exploit **HTTP header injection** by setting the `jku` parameter to a URL that reflects user-controlled headers. If the server does not validate or sanitize the input, you can:
+  - Set `jku` to a URL that accepts HTTP header injection via CRLF (`\r\n`)
+  - Inject a crafted `jwks.json` response into the server’s headers using CRLF
+  - Cause the server to reflect this header as a fake JWK Set response
+  
+  This tricks the JWT validation logic into using your injected public key without needing a file upload or external redirect.
 
 ---
 
