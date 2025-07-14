@@ -34,7 +34,7 @@ key = open(kid).read
 ## Tools
 - Burp Suite (JWT Editor extension)
 
---
+---
 
 ## Exploitation Steps
 
@@ -55,7 +55,7 @@ key = open(kid).read
 
 5. Send the forged token and observe the application's response.
 
-### SQL Injection
+### SQL Injection using Burp (JWT Editor extension)
 
 Sign token with `attackerkey`.
 
