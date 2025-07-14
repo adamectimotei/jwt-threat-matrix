@@ -57,26 +57,26 @@ key = open(kid).read
 
 ### SQL Injection using Burp (JWT Editor extension)
 
-Sign token with `attackerkey`.
+1. In the JWT header, set `kid` to a SQL injection payload:
+   ```
+   yy' UNION SELECT '1
+   ```
+   <img width="597" height="695" alt="image" src="https://github.com/user-attachments/assets/3daeba86-2989-4fa1-96ad-41fdc85a0d9d" />
+
+2. Generate a new symmetric key in Burp > **JWT Editor Keys**, setting the secret to the value injected by your SQL payload (`1` in this case)
+   <img width="1033" height="628" alt="image" src="https://github.com/user-attachments/assets/03598457-3253-4a7e-964c-ff0218261478" />
+
+3. Sign the JWT payload by the symmetric key you created
+   <img width="786" height="697" alt="image" src="https://github.com/user-attachments/assets/c5685afb-d2ad-45a1-90d9-2ceb14b898b2" />
+
+4. Send the forged token and observe the application's response.
 
 ### OS Command Injection
 
-In Ruby or similar:
-
-```ruby
-open(user_input)
-```
-
-Payload:
+Payload: `|whoami`
 
 ```json
 "kid": "|whoami"
-```
-
-Server executes the command and returns output like:
-
-```
-"www-data\n"
 ```
 
 ---
