@@ -49,6 +49,13 @@ verify(token, publicKey);  // insecure if alg is HS256
 
 ## Exploitation Steps
 
+1. Obtain the server's public key from:
+   - JWK endpoint
+   - existing JWTs
+   - TLS certificate
+2. Convert the public key to a symmetric format
+3. Modify the JWT header to use HS256, sign it using the public key, and send it
+
 #### 1. Obtain Server's Public Key
 
 - Look for `/.well-known/jwks.json` or `/jwks.json`
@@ -120,6 +127,7 @@ openssl x509 -pubkey -in certificatechain.pem -noout > pubkey.pem
 #### 3. Modify and Sign JWT
 
 - Change the JWT header to:
+  
   ```json
   {
     "typ": "JWT",
