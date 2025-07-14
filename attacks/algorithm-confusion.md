@@ -4,7 +4,7 @@ Algorithm confusion, also called **JWT downgrade attack**, occurs when a server 
 
 ---
 
-## Vulnerability Summary
+## Vulnerability Details
 
 JWTs support multiple algorithms:
 
