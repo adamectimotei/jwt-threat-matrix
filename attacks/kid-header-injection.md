@@ -50,7 +50,7 @@ key = open(kid).read
    ```
    ../../../../../../../../../dev/null
    ```
-4. Click **Sign** and use the symmetric key you created.
+4. Click **Sign** and use the symmetric key you created. Otherwise, click **Attack** and **Sign with empty key**.
    <img width="885" height="697" alt="image" src="https://github.com/user-attachments/assets/391b131f-e966-4d19-8819-0089151bfe52" />
 
 5. Send the forged token and observe the application's response.
@@ -63,10 +63,10 @@ key = open(kid).read
    ```
    <img width="597" height="695" alt="image" src="https://github.com/user-attachments/assets/3daeba86-2989-4fa1-96ad-41fdc85a0d9d" />
 
-2. Generate a new symmetric key in Burp > **JWT Editor Keys**, setting the secret to the value injected by your SQL payload (`1` in this case)
+2. Generate a new symmetric key in Burp > **JWT Editor Keys**, setting the secret to the value injected by your SQL payload (`1` in this case).
    <img width="1033" height="628" alt="image" src="https://github.com/user-attachments/assets/03598457-3253-4a7e-964c-ff0218261478" />
 
-3. Sign the JWT payload by the symmetric key you created
+3. Sign the JWT payload by the symmetric key you created.
    <img width="786" height="697" alt="image" src="https://github.com/user-attachments/assets/c5685afb-d2ad-45a1-90d9-2ceb14b898b2" />
 
 4. Send the forged token and observe the application's response.
