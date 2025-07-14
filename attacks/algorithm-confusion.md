@@ -52,10 +52,56 @@ verify(token, publicKey);  // insecure if alg is HS256
 #### 1. Obtain Server's Public Key
 
 - Look for `/.well-known/jwks.json` or `/jwks.json`
+  
+  ```json
+  {
+    "keys": [
+        {
+            "kty": "RSA",
+            "e": "AQAB",
+            "kid": "75d0ef47-af89-47a9-9061-7c02a610d5ab",
+            "n": "o-yy1wpYmffgXBxhAUJzHHocCuJolwDqql75ZWuCQ_cb33K2vh9mk6GPM9gNN4Y_qTVX67WhsN3JvaFYw-fhvsWQ"
+        },
+        {
+            "kty": "RSA",
+            "e": "AQAB",
+            "kid": "d8fDFo-fS9-faS14a9-ASf99sa-7c1Ad5abA",
+            "n": "fc3f-yy1wpYmffgXBxhAUJzHql79gNNQ_cb33HocCuJolwDqmk6GPM4Y_qTVX67WhsN3JvaFYw-dfg6DH-asAScw"
+        }
+    ]
+  }
+  ```
+
+  1. Copy only one of the keys, for example:
+     
+  ```json
+        {
+            "kty": "RSA",
+            "e": "AQAB",
+            "kid": "75d0ef47-af89-47a9-9061-7c02a610d5ab",
+            "n": "o-yy1wpYmffgXBxhAUJzHHocCuJolwDqql75ZWuCQ_cb33K2vh9mk6GPM9gNN4Y_qTVX67WhsN3JvaFYw-fhvsWQ"
+        }
+  ```
+
+  2. In **JWT Editor Keys** tab, click **New RSA Key**, paste the copied JWK key and generate a new assymetric key.
+  <img width="1034" height="657" alt="image" src="https://github.com/user-attachments/assets/fbce9973-a120-4e99-a990-429efc9b0b3e" />
+
+  3. You can now generate the PEM version by using **Copy Public Key as PEM**
+  <img width="1031" height="345" alt="image" src="https://github.com/user-attachments/assets/44cec567-c45f-4665-b243-028861b018eb" />
+  
 - Public key may also be extractable from 2 or more JWTs
-```bash
-docker run --rm -it portswigger/sig2n <jwt1> <jwt2>
-```
+  1. Run sig2n with two JWT tokens
+     
+     ```bash
+     docker run --rm -it portswigger/sig2n <jwt1> <jwt2>
+     ```
+     <img width="885" height="507" alt="image" src="https://github.com/user-attachments/assets/42dd95fb-4629-4dfe-9cb7-2e9272cf3b56" />
+
+  2. Try each of the forged JWT tokens and find out which one gets accepted by the server.
+     <img width="884" height="505" alt="image" src="https://github.com/user-attachments/assets/a9905fcb-112e-41b1-a62f-0406e53081bc" />
+
+  3. The corresponding base64-encoded x509 key is the server's public key
+     <img width="882" height="507" alt="image" src="https://github.com/user-attachments/assets/2b69f1fc-6d00-4624-b1ea-f955fadbcaa5" />
 
 - Public key may also be extractable from a TLS certificate:
 
@@ -66,16 +112,23 @@ openssl x509 -pubkey -in certificatechain.pem -noout > pubkey.pem
 
 #### 2. Convert Public Key to Symmetric Format
 
-- Base64-encode the PEM-formatted public key
-- In Burp's **JWT Editor Keys** tab:
-  - Click **New Symmetric Key**
-  - Replace the `k` value with the Base64-encoded PEM public key
+- Base64-encode the PEM-formatted public key if extracted from `jwks.json` file or a TLS certificate
+- Alternatively, use base64-encoded public key generated from sig2n directly
+- In Burp's **JWT Editor Keys** tab, create a **New Symmetric Key** and replace the `k` value with the Base64-encoded PEM public key
+  <img width="1031" height="637" alt="image" src="https://github.com/user-attachments/assets/038e5579-9f98-4762-aa02-898478021e54" />
 
 #### 3. Modify and Sign JWT
 
-- Change `alg` in the JWT header to `HS256`
-- Modify the payload (e.g., set `sub=admin`)
+- Change the JWT header to:
+  ```json
+  {
+    "typ": "JWT",
+    "alg": "HS256"
+  }
+  ```
+
 - Sign the JWT with the symmetric key created above
+  <img width="767" height="696" alt="image" src="https://github.com/user-attachments/assets/1bba082b-9a63-47c3-8ec5-c5b4aa2c887b" />
 
 ---
 
