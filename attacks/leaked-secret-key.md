@@ -28,7 +28,7 @@ A known list of leaked and common JWT secrets is maintained here:
 ## Exploitation Steps
 
 #### Burp Suite (JWT heartbreaker)
-1. Load JWT heartbreaker extension.
+1. Load **JWT heartbreaker** extension.
 2. Start intercepting requests containing JWT tokens and check if any of them uses a leaked secret key.
    <img width="757" height="514" alt="image" src="https://github.com/user-attachments/assets/be32886f-1e29-4279-9b72-8128beb2758c" />
 
