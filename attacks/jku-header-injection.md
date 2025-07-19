@@ -6,7 +6,7 @@ Some applications support the `jku` (JWK Set URL) JWT header parameter to dynami
 
 ## Vulnerability Details
 
-According to the JWS specification, only the alg header parameter is mandatory. In practice, however, JWT headers (also known as JOSE headers) often contain several other parameters, such as jku (JWK Set Url).
+According to the JWS specification, only the `alg` header parameter is mandatory. In practice, however, JWT headers (also known as JOSE headers) often contain several other parameters, such as jku (JWK Set Url).
 
 ### JKU Header Example
 
@@ -68,14 +68,14 @@ If the server fetches and uses the malicious JWK without validation, the signatu
 
 ## Exploitation Steps
 
-### Burp Suite (JWT Editor Extension)
-1. Generate a new RSA key in the **JWT Editor Keys** tab.
+#### Burp Suite (JWT Editor Extension)
+1. Generate a **New RSA Key** in the **JWT Editor Keys** tab.
    <img width="1029" height="654" alt="image" src="https://github.com/user-attachments/assets/9f142a7e-eb93-4d9c-b838-d7614f4cbaa9" />
    
-2. Copy the public key as a JWK
+2. **Copy Public Key as JWK**.
    <img width="1029" height="365" alt="image" src="https://github.com/user-attachments/assets/214a8488-a394-4918-a3c6-79861d5a96eb" />
 
-3. Host it in a `jwks.json` file (MUST BE INSIDE `{"keys": []}`!!!)
+3. Host it in a `jwks.json` file (MUST BE INSIDE `{"keys": []}`!!!).
    ```json
    {
      "keys": [ <PASTE HERE> ]
@@ -102,26 +102,26 @@ If the server fetches and uses the malicious JWK without validation, the signatu
 
 Some applications implement basic validation for the `jku` URL to restrict where keys can be loaded from. These protections can sometimes be bypassed using one of the following techniques:
 
-- **File upload (domain-based allowlist):**  
+- **File upload** (domain-based allowlist):  
   If the application only checks that the domain is trusted, you may upload a `jwks.json` file (e.g., via a user-upload feature) to that domain and point `jku` to it.
 
-- **Open redirect:** (domain-based allowlist)
+- **Open redirect:** (domain-based allowlist):
   If an open redirect exists on a trusted domain, set the `jku` to point through it:
   ```text
   https://trusted.com/redirect?url=https://attacker.com/jwks.json
   ```
 
-- **Path traversal (path-based check):**  
+- **Path traversal** (path-based check):  
   If the server validates the full path (e.g., expects `/.well-known/jwks.json`), you may bypass it using path traversal:
   ```text
   http://target.com/.well-known/jwks.json/../../uploads/jwks.json
   ```
 
-- **CRLF header injection (domain-based check):**  
-  In some cases, it's possible to exploit **HTTP header injection** by setting the `jku` parameter to a URL that reflects user-controlled headers. If the server does not validate or sanitize the input, you can:
-  - Set `jku` to a URL that accepts HTTP header injection via CRLF (`\r\n`)
-  - Inject a crafted `jwks.json` response into the server’s headers using CRLF
-  - Cause the server to reflect this header as a fake JWK Set response
+- **CRLF header injection** (domain-based check):  
+  In some cases, it's possible to exploit HTTP header injection by setting the `jku` parameter to a URL that reflects user-controlled headers. If the server does not validate or sanitize the input, you can:
+  1. Set `jku` to a URL that accepts HTTP header injection via CRLF (`\r\n`).
+  2. Inject a crafted `jwks.json` response into the server’s headers using CRLF.
+  3. Cause the server to reflect this header as a fake JWK Set response.
   
   This tricks the JWT validation logic into using your injected public key without needing a file upload or external redirect.
 
