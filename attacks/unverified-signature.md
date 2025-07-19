@@ -33,7 +33,7 @@ const user = jwt.decode(token);  // no signature verification!
 
 #### Burp Suite (JWT Editor extension)
 1. Intercept a request containing a JWT token.
-2. Switch to the "JSON Web Token" tab.
+2. Switch to the **JSON Web Token** tab.
 3. Modify the payload (e.g., change `"role": "user"` to `"role": "admin"`).
 4. First, try keeping the original signature (`header.payload.signature`).
 5. If that fails, try removing the signature entirely (`header.payload.`).
@@ -58,9 +58,9 @@ This issue effectively renders JWT-based authentication useless.
 
 ## Defense
 
-- Always use `verify()` (not just `decode()`) in JWT libraries.
-- Reject unsigned tokens or those with malformed signatures.
-- Implement strict JWT validation middleware.
+- Always use `verify()` (not just `decode()`) in JWT libraries
+- Reject unsigned tokens or those with malformed signatures
+- Implement strict JWT validation middleware
 
 ---
 
