@@ -37,9 +37,9 @@ Although signed, the JWT payload is not encrypted. If it contains sensitive or s
 2. Paste it into [jwt.io](https://jwt.io) or use a local tool.
 3. Inspect the decoded contents for sensitive or unexpected data.
 
-#### Burp Suite (JWT Editor)
+#### Burp Suite (JWT Editor extension)
 1. Intercept a request containing a JWT.
-2. Switch to the “JSON Web Token” tab.
+2. Switch to the **JSON Web Token** tab.
 3. Inspect the decoded contents for sensitive or unexpected data.
 
 #### jwt_tool
