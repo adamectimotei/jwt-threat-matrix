@@ -9,7 +9,7 @@ Some applications accept JWTs with `alg: none`, meaning no signature is required
 JWTs include an `alg` field in the header to specify the signing algorithm. The special value `none` indicates that the token is **not signed**. Most libraries reject this by default, but some applications may:
 - Accept `alg: none` due to misconfiguration
 - Fail to validate the `alg` field at all
-- Be vulnerable to obfuscated values like `"None"` or mixed casing
+- Be vulnerable to obfuscated values like `None` or mixed casing
 
 If signature verification is skipped based on this value, the attacker can supply any payload they want and still pass authentication.
 
@@ -32,7 +32,7 @@ If signature verification is skipped based on this value, the attacker can suppl
 
 #### Burp Suite (JWT Editor extension)
 1. Intercept a request containing a JWT token.
-2. Modify the header to use `"alg": "none"` and other variants:
+2. Modify the header to use `"alg": "none"` and try other variants as well:
    - `"alg": "None"`
    - `"alg": "NONE"`
    - `"alg": "nOnE"`
@@ -58,8 +58,8 @@ This issue effectively renders JWT-based authentication useless.
 
 ## Defense
 
-- Explicitly disable the `none` algorithm in your JWT library configuration.
-- Validate the algorithm server-side using strict whitelist (e.g., always enforce HS256 or RS256).
+- Explicitly disable the `none` algorithm in your JWT library configuration
+- Validate the algorithm server-side using strict whitelist (e.g., always enforce HS256 or RS256)
 
 ---
 
