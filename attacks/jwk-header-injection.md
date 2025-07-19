@@ -6,7 +6,7 @@ JWTs can optionally include a JWK (JSON Web Key) directly inside the token heade
 
 ## Vulnerability Details
 
-According to the JWS specification, only the alg header parameter is mandatory. In practice, however, JWT headers (also known as JOSE headers) often contain several other parameters, such as jwk (JSON Web Key).
+According to the JWS specification, only the `alg` header parameter is mandatory. In practice, however, JWT headers (also known as JOSE headers) often contain several other parameters, such as jwk (JSON Web Key).
 
 The `jwk` header field lets the sender embed a public key that should be used to verify the JWT. This is intended for advanced scenarios such as key rotation or federated identity. However, if the server naively trusts the embedded key **without validating its origin or issuer**, it opens the door to full token forgery.
 
@@ -38,7 +38,7 @@ This vulnerability was publicly disclosed as [CVE-2018-0114](https://nvd.nist.go
 ## Exploitation Steps
 
 #### Burp Suite (JWT Editor extension)
-1. Go to the **JWT Editor Keys** tab and generate a new RSA key.
+1. Go to the **JWT Editor Keys** tab and generate a **New RSA Key**.
    <img width="1029" height="654" alt="image" src="https://github.com/user-attachments/assets/9f142a7e-eb93-4d9c-b838-d7614f4cbaa9" />
 
 2. Intercept a request and send it to Repeater.
