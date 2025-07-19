@@ -15,7 +15,7 @@
 
 ---
 
-## Basic JWT Concepts
+## JWT Primer
 
 #### JWT token
 
