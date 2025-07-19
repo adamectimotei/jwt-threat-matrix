@@ -76,4 +76,4 @@ python3 jwt_tool.py -t <URL> -M at -rh "Authorization: Bearer <JWT>"
 ---
 
 ## Contributions  
-Feel free to open issues or pull requests to improve examples, add tools, or expand the matrix.
+Feel free to open issues or pull requests to improve examples or add new attacks and tools.
