@@ -32,9 +32,7 @@ Each token has three parts:
 2. **Payload** – contains claims (user ID, expiration, roles, etc.)
 3. **Signature** – validates the token's integrity using a secret or key
 
----
-
-#### Algorithm Types - Symmetric vs. Asymmetric
+#### Algorithm Types
 
 | Type       | Algorithm | Signing Key | Verification Key |
 |------------|-----------|-------------|------------------|
@@ -43,19 +41,19 @@ Each token has three parts:
 
 ---
 
-## *Many JWT Implementations* Concept
+## Catch
 
 In modern microservice-based applications:
 
-- Services may use **different JWT libraries**
-- May have **different keys**, parsing logic, and expiration settings
-- Third-party services may handle tokens **insecurely**
+- Services may use different JWT libraries
+- Services may have different keys, parsing logic, and expiration settings
+- Third-party services may handle tokens insecurely
 
-Ideally, you should test every endpoint individually.
+Ideally, you should test **EVERY ENDPOINT**!
 
 ---
 
-## First Things To Do
+## First Checks
 
 Before manual testing, try to run jwt_tool with **playbook** or **all** tests
 
@@ -77,5 +75,5 @@ python3 jwt_tool.py -t <URL> -M at -rh "Authorization: Bearer <JWT>"
 
 ---
 
-**Contributions welcome!**  
+## Contributions  
 Feel free to open issues or pull requests to improve examples, add tools, or expand the matrix.
