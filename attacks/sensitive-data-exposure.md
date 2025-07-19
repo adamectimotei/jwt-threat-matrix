@@ -15,7 +15,8 @@ Although signed, the JWT payload is not encrypted. If it contains sensitive or s
   "sub": "1234567890",
   "name": "John Doe",
   "email": "john.doe@example.com",
-  "phone": "123456789"
+  "phone_number": "123456789",
+  "gender": "male"
 }
 ```
 
