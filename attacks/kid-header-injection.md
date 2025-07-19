@@ -6,7 +6,7 @@ Some applications support multiple signing keys for JWTs. The `kid` (Key ID) hea
 
 ## Vulnerability Details
 
-According to the JWS specification, only the alg header parameter is mandatory. In practice, however, JWT headers (also known as JOSE headers) often contain several other parameters, such as kid (Key ID).
+According to the JWS specification, only the `alg` header parameter is mandatory. In practice, however, JWT headers (also known as JOSE headers) often contain several other parameters, such as kid (Key ID).
 
 JWTs often include a `kid` parameter to let the server determine which signing key to use. However, when applications dynamically fetch keys based on this field — especially from filesystems or databases — the kid value becomes a dangerous injection point. If the application uses it insecurely (e.g., directly concatenating it into a file path or SQL query), attackers can manipulate it to point to keys they control.
 
@@ -38,9 +38,9 @@ key = open(kid).read
 
 ## Exploitation Steps
 
-### Path Traversal using Burp (JWT Editor extension)
+#### Path Traversal using Burp (JWT Editor extension)
 
-1. Generate a new symmetric key in Burp > **JWT Editor Keys**.
+1. Generate a **New Symmetric Key** in Burp > **JWT Editor Keys**.
    <img width="1028" height="634" alt="image" src="https://github.com/user-attachments/assets/33b33172-47ad-4be8-a1c4-c2f7dd596f24" />
 
 2. Set the `k` property to `AA==` (Base64-encoded null byte).
@@ -55,7 +55,7 @@ key = open(kid).read
 
 5. Send the forged token and observe the application's response.
 
-### SQL Injection using Burp (JWT Editor extension)
+#### SQL Injection using Burp (JWT Editor extension)
 
 1. In the JWT header, set `kid` to a SQL injection payload:
    ```
@@ -63,15 +63,15 @@ key = open(kid).read
    ```
    <img width="597" height="695" alt="image" src="https://github.com/user-attachments/assets/3daeba86-2989-4fa1-96ad-41fdc85a0d9d" />
 
-2. Generate a new symmetric key in Burp > **JWT Editor Keys**, setting the secret to the value injected by your SQL payload (`1` in this case).
+2. Generate a **New Symmetric Key** in Burp > **JWT Editor Keys**, setting the secret to the value injected by your SQL payload (`1` in this case).
    <img width="1033" height="628" alt="image" src="https://github.com/user-attachments/assets/03598457-3253-4a7e-964c-ff0218261478" />
 
-3. Sign the JWT payload by the symmetric key you created.
+3. **Sign** the JWT payload by the symmetric key you created.
    <img width="786" height="697" alt="image" src="https://github.com/user-attachments/assets/c5685afb-d2ad-45a1-90d9-2ceb14b898b2" />
 
 4. Send the forged token and observe the application's response.
 
-### OS Command Injection
+#### OS Command Injection
 
 Payload: `|ping 127.0.0.1`
 
@@ -97,11 +97,11 @@ Payload: `|ping 127.0.0.1`
 
 ## Defense
 
-- Never trust user-supplied `kid` values without validation.
-- Maintain a strict allowlist of valid `kid` values.
-- Sanitize and canonicalize paths before use.
-- Use parameterized queries for any DB lookups.
-- Avoid using user input in OS-level functions like `open()`.
+- Never trust user-supplied `kid` values without validation
+- Maintain a strict allowlist of valid `kid` values
+- Sanitize and canonicalize paths before use
+- Use parameterized queries for any DB lookups
+- Avoid using user input in OS-level functions like `open()`
 
 ---
 
@@ -111,4 +111,3 @@ Payload: `|ping 127.0.0.1`
 - https://pentesterlab.com/exercises/jwt-iii
 - https://pentesterlab.com/exercises/jwt-iv
 - https://pentesterlab.com/exercises/jwt-vi
-
