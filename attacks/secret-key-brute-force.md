@@ -51,10 +51,11 @@ hashcat -a 0 -m 16500 jwt.txt /usr/share/wordlists/rockyou.txt
 python3 jwt_tool.py <JWT> -C -d <WORDLIST.TXT>
 ```
 
-#### Burp Suite (JWT Editor)
+#### Burp Suite (JWT Editor extension)
 1. Intercept a request containing a JWT token.
-2. Use Weak HMAC Secret Attack in JSON Web Token tab
+2. Use **Weak HMAC Secret Attack** in **JSON Web Token** tab.
    <img width="718" height="486" alt="image" src="https://github.com/user-attachments/assets/d3aab871-0761-40eb-8fcd-bc0ff93e9b8f" />
+
 3. Re-sign the JWT using the cracked secret.
 
 ---
