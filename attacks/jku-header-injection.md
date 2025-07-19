@@ -119,9 +119,9 @@ Some applications implement basic validation for the `jku` URL to restrict where
 
 - **CRLF header injection** (domain-based check):  
   In some cases, it's possible to exploit HTTP header injection by setting the `jku` parameter to a URL that reflects user-controlled headers. If the server does not validate or sanitize the input, you can:
-  1. Set `jku` to a URL that accepts HTTP header injection via CRLF (`\r\n`).
-  2. Inject a crafted `jwks.json` response into the server’s headers using CRLF.
-  3. Cause the server to reflect this header as a fake JWK Set response.
+  - Set `jku` to a URL that accepts HTTP header injection via CRLF (`\r\n`)
+  - Inject a crafted `jwks.json` response into the server’s headers using CRLF
+  - Cause the server to reflect this header as a fake JWK Set response
   
   This tricks the JWT validation logic into using your injected public key without needing a file upload or external redirect.
 
