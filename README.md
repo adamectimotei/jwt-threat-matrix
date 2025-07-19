@@ -1,4 +1,4 @@
-# 🧩 JWT Threat Matrix
+# JWT Threat Matrix
 
 **JWT Threat Matrix** is a curated cheatsheet to help **identify, exploit, and mitigate** vulnerabilities in JSON Web Token (JWT) implementations. It aims to:
 
