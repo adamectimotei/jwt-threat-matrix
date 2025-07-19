@@ -6,3 +6,5 @@ This matrix summarizes which JWT attacks apply to symmetric (HS*) vs. asymmetric
 |-------------|----|----|----|----|----|----|----|----|----|
 | Symmetric | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ |
 | Asymmetric | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ |
+
+.....
