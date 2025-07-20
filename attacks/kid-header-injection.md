@@ -8,7 +8,7 @@ Some applications support multiple signing keys for JWTs. The `kid` (Key ID) hea
 
 According to the JWS specification, only the `alg` header parameter is mandatory. In practice, however, JWT headers (also known as JOSE headers) often contain several other parameters, such as kid (Key ID).
 
-JWTs often include a `kid` parameter to let the server determine which signing key to use. However, when applications dynamically fetch keys based on this field — especially from filesystems or databases — the kid value becomes a dangerous injection point. If the application uses it insecurely (e.g., directly concatenating it into a file path or SQL query), attackers can manipulate it to point to keys they control.
+JWTs often include a `kid` parameter to let the server determine which signing key to use. However, when applications dynamically fetch keys based on this field - especially from filesystems or databases - the kid value becomes a dangerous injection point. If the application uses it insecurely (e.g., directly concatenating it into a file path or SQL query), attackers can manipulate it to point to keys they control.
 
 ### Vulnerable Code Example (File Path Traversal)
 
