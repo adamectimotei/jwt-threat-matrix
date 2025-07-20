@@ -53,8 +53,8 @@ verify(token, publicKey);  // insecure if alg is HS256
    - JWK endpoint
    - existing JWTs
    - TLS certificate
-2. Convert the public key to a symmetric format
-3. Modify the JWT header to use HS256, sign it using the public key, and send it
+2. Convert the public key to a symmetric format.
+3. Modify the JWT header to use HS256, sign it using the public key, and send it.
 
 #### 1. Obtain Server's Public Key
 
@@ -90,24 +90,24 @@ verify(token, publicKey);  // insecure if alg is HS256
         }
   ```
 
-  2. In **JWT Editor Keys** tab, click **New RSA Key**, paste the copied JWK key and generate a new assymetric key.
+  2. In **JWT Editor Keys** tab, click **New RSA Key**, paste the copied JWK key and generate a **New RSA Key**.
   <img width="1034" height="657" alt="image" src="https://github.com/user-attachments/assets/fbce9973-a120-4e99-a990-429efc9b0b3e" />
 
-  3. You can now generate the PEM version by using **Copy Public Key as PEM**
+  3. You can now generate the PEM version by using **Copy Public Key as PEM**.
   <img width="1031" height="345" alt="image" src="https://github.com/user-attachments/assets/44cec567-c45f-4665-b243-028861b018eb" />
   
 - Public key may also be extractable from 2 or more JWTs
-  1. Run sig2n with two JWT tokens
+  1. Run sig2n with two JWT tokens.
      
      ```bash
-     docker run --rm -it portswigger/sig2n <jwt1> <jwt2>
+     docker run --rm -it portswigger/sig2n <JWT_TOKEN1> <JWT_TOKEN2>
      ```
      <img width="885" height="507" alt="image" src="https://github.com/user-attachments/assets/42dd95fb-4629-4dfe-9cb7-2e9272cf3b56" />
 
   2. Try each of the forged JWT tokens and find out which one gets accepted by the server.
      <img width="884" height="505" alt="image" src="https://github.com/user-attachments/assets/a9905fcb-112e-41b1-a62f-0406e53081bc" />
 
-  3. The corresponding base64-encoded x509 key is the server's public key
+  3. The corresponding base64-encoded x509 key is the server's public key.
      <img width="882" height="507" alt="image" src="https://github.com/user-attachments/assets/2b69f1fc-6d00-4624-b1ea-f955fadbcaa5" />
 
 - Public key may also be extractable from a TLS certificate:
